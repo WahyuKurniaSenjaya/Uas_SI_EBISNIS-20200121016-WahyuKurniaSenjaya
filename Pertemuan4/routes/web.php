@@ -23,8 +23,10 @@ Route::get('','App\Http\Controllers\CobaController@index');
 // Route::get('/friends/{id}/edit','App\Http\Controllers\CobaController@edit');
 // Route::put('/friends/{id}','App\Http\Controllers\CobaController@update');
 // Route::delete('/friends/{id}','App\Http\Controllers\CobaController@destroy');
-
 Route::resources([
     "friends" => CobaController::class,
     "groups" => GroupsController::class,
 ]);
+Route::get('/groups/addmember/{group}',[GroupsController::class, 'addmember']);
+Route::put('/groups/addmember/{group}',[GroupsController::class, 'updatemember']);
+Route::put('/groups/deleteaddmember/{group}',[GroupsController::class, 'deleteaddmember']);

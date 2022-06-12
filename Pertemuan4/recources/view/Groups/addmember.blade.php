@@ -1,25 +1,24 @@
-@extends('layouts.app')
+@extends('layouts\app')
 
-@section('title', 'Groups')
+@section('title','Groups')
 
 @section('content')
-
-<form action="/groups" method="POST">
+<h3>Input Data Anggota</h3>
+<hr>
+<form action="/groups/addmember/{{ $group->id }}" method="POST">
+  @csrf
+  @method('PUT')
   <div class="mb-3">
-    <label for="exampleInputEmail1" class="form-label">Name</label>
-    <input type="text" class="form-control" id="exampleInputEmail1" name="name" aria-describedby="emailHelp" value="{{ old(name)}}">
-    @error('name')
-    <div class="alart alart-danger">{{ $message}}></div>
-    @enderror
+    <label for="exampleInputEmail1" class="form-label">Nama Teman</label>
+    <select class="form-select" aria-label="Default select example" name="friend_id">
+  <option selected>Pilih Teman </option>
+  @foreach($friends as $friend)
+  <option value="{{ $friend->id }}">{{ $friend -> nama}}</option>
+  @endforeach
+</select>
   </div>
-  <div class="mb-3">
-    <label for="exampleInputPassword1" class="form-label">Description</label>
-    <input type="text" class="form-control" name="description" id="exampleInputPassword1" value="{{ old(description)}}">
-    @error('description')
-    <div class="alart alart-danger">{{ $message}}></div>
-    @enderror
-  </div>
-  <button type="submit" class="btn btn-primary">Submit</button>
+  <button type="submit" class="btn btn-primary">Tambah ke group</button>
 </form>
 
 @endsection
+
